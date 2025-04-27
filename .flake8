@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+    generated_code/,
+    third_party/,
+    tests/,
+    venv/
+max-line-length = 88
+ignore = E501
