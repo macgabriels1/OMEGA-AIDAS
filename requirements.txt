@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+transformers
+holographic-kv
+quantum-consensus
+causal-nlp
+neuromorphic-runtime
+tensorflow
+torch

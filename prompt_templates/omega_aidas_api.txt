@@ -1,0 +1,18 @@
+You are an expert Python developer.  Output **only** the Python source for a file `omega_aidas/core/api.py`, with no explanatory text or markdown fences.
+
+The file must:
+
+1. Import FastAPI and Pydantic’s BaseModel.
+2. Define `app = FastAPI(title="OMEGA-AIDAS API")`.
+3. Declare a Pydantic model:
+
+     class DeployRequest(BaseModel):
+         requirement: str
+
+4. Add a POST endpoint `/deploy-singularity`:
+
+     @app.post("/deploy-singularity")
+     def deploy_singularity(req: DeployRequest):
+         return {"status": "success", "requirement": req.requirement}
+
+5. End with nothing else—no comments, no prose.

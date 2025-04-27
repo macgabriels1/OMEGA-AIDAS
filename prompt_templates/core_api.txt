@@ -1,0 +1,382 @@
+You are a professional Python developer.  Generate a Python package named `omega_aidas` on disk, with this exact structure and contents:
+
+1. Module: omega_aidas/cognitive_core.py  
+   - Imports:
+     ```python
+     import tensorflow as tf
+     import torch
+     from transformers import AutoModelForCausalLM
+     from kfp import dsl
+     from argo.workflows import client
+     import quantum_consensus as qconsensus
+     import neuromorphic_runtime as neuro
+     from holographic_kv import HolographicStore
+     import causal_nlp as cnlp
+     ```
+   - Class: `CognitiveCore`
+     - `__init__(self)`:
+       - `self.qnpu = neuro.QuantumNeuroProcessor()`
+       - `self.hmem = HolographicStore()`
+       - `self.ma_bus = qconsensus.MultiAgentBus(encryption="kyber1024", consensus="pbft")`
+     - `load_ai_models(self) -> None`:
+       - `self.codex = neuro.load_sparse_model("codex-42b", pruning_rate=0.65)`
+       - `self.deploy_rl = tf.agents.MultiAgentDQN(num_agents=7, communication_bus=self.ma_bus)`
+
+2. Module: omega_aidas/implementation.py  
+   - Imports:
+     ```python
+     from .cognitive_core import CognitiveCore
+     import causal_nlp as cnlp
+     import quantum_consensus as qconsensus
+     ```
+   - Class: `ImplementationAutomaton`
+     - `__init__(self, cognitive_core: CognitiveCore) -> None`:
+       - `self.core = cognitive_core`
+       - `self.memory = self.core.hmem`
+       - `self.blueprint_analyzer = cnlp.CausalBlueprintParser()`
+     - `implement_feature(self, requirement: str) -> dict`:
+       1. `causal_graph = self.blueprint_analyzer.parse(requirement)`
+       2. `arch_search = self._nas_optimize(causal_graph)`
+       3. `implementation = self._quantum_code_gen(arch_search)`
+       4. `validation = self._autonomous_validation(implementation)`
+       5. Return `{"implementation": implementation, "validation": validation, "quantum_hash": qconsensus.qhash(implementation)}`
+     - Private methods:
+       ```python
+       def _nas_optimize(self, graph: dict) -> dict: ...
+       def _quantum_code_gen(self, arch: dict) -> str: ...
+       def _autonomous_validation(self, code: str) -> dict: ...
+       ```
+       (Implement these per doc spec, using `self.core.qnpu.context()`, `self.core.codex.generate`, and `self.memory.retrieve("quantum_constraints")`.)
+
+3. Module: omega_aidas/deployer.py  
+   - Imports:
+     ```python
+     from .cognitive_core import CognitiveCore
+     import quantum_consensus as qconsensus
+     import neuromorphic_runtime as neuro
+     ```
+   - Class: `NeuroDeployer`
+     - `__init__(self, cognitive_core: CognitiveCore) -> None`: set up `self.core`, `self.topology_mapper = neuro.TopologyOptimizer()`, `self.chaos_immunizer = ChaosImmunityEngine()`
+     - `deploy(self, artifact: dict) -> dict`: verify `artifact["quantum_hash"]`, find `optimal_topology`, call `self.core.deploy_rl.collective_decide(...)`, execute rollout via `_execute_rollout`, call `_holographic_watch`
+     - Private `_execute_rollout(self, plan: dict, immunization: bool) -> dict`
+
+4. Module: omega_aidas/ops.py  
+   - Imports:
+     ```python
+     from .cognitive_core import CognitiveCore
+     import causal_nlp as cnlp
+     import quantum_consensus as qconsensus
+     ```
+   - Class: `HolographicOps` with `monitor(self, release_id: str) -> None` and `_quantum_heal(self, release_id: str, anomalies: dict) -> None` per spec.
+
+5. Module: omega_aidas/control_plane.py  
+   - Imports:
+     ```python
+     from fastapi import FastAPI, HTTPException, Security
+     from fastapi_quantum_security import QuantumAuth
+     from .control_plane import OmegaX
+     ```
+   - Instantiate `app = FastAPI()`, `omega = OmegaX()`
+   - Define endpoint:
+     ```python
+     @app.post("/deploy-singularity")
+     async def deploy_singularity(requirement: str, auth: QuantumAuth = Security(QuantumAuth())) -> dict:
+         if not auth.verify(requirement):
+             raise HTTPException(403, "Quantum authorization failed")
+         return omega.full_cycle(requirement)
+     ```
+   - `if __name__ == "__main__": neuro.serve(app, host="0.0.0.0", port=443, neuromorphic_cores=8, quantum_tls=True)`
+
+General requirements for **all modules**:
+- Use type hints, PEP8 formatting, and include docstrings for every class and method.
+- Raise appropriate exceptions (e.g. `QuantumIntegrityError`) where specified.
+- Ensure each module imports only what it needs and matches the names exactly as in the spec.
+
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+no tests ran in 0.01s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                    ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.79s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       To address the test failures and syntax error, I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                                                                   ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.75s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       To address the test failures and syntax error, I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                                                                   ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.73s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       To address the test failures and syntax error, I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                                                                   ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.73s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       To address the test failures and syntax error, I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                                                                   ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.73s
+
+```
+Please fix the code.
+
+# Test failures:
+```
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting tests/test_omega_aidas_core_api.py _____________
+venv\Lib\site-packages\_pytest\python.py:493: in importtestmodule
+    mod = import_path(
+venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+..\..\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+venv\Lib\site-packages\_pytest\assertion\rewrite.py:185: in exec_module
+    exec(co, module.__dict__)
+tests\test_omega_aidas_core_api.py:10: in <module>
+    from omega_aidas.core.api import app  # must match the package path you generated
+E     File "C:\Users\Omen\Desktop\OMEGAAIDASBuild\generated_code\omega_aidas\core\api.py", line 1
+E       To address the test failures and syntax error, I will create the `omega_aidas` Python package with the specified structure and contents. Let's start by creating the package directory and the required modules.
+E                                                                                                                                                   ^
+E   SyntaxError: unterminated string literal (detected at line 1)
+=========================== short test summary info ===========================
+ERROR tests/test_omega_aidas_core_api.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.72s
+
+```
+Please fix the code.
