@@ -2,35 +2,28 @@ name: Python CI
 
 on:
   push:
-    branches: [ "**" ]
+    branches:
+      - master
+      - main
   pull_request:
-    branches: [ "**" ]
+    branches:
+      - master
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.10]
-
+        python-version: [3.11, 3.10, 3.9]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v3
 
-- name: Set up Python
-  uses: actions/setup-python@v4
-  with:
-    # pick a version that exists on Ubuntu 24.04:
-    python-version: '3.11'
-    architecture: 'x64'
-
-      - name: Cache pip
-        uses: actions/cache@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
