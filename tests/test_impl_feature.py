@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath("generated_code"))
 
 from omega_aidas.core.impl import CognitiveCore, ImplementationAutomaton
 
+
 def test_stub_implement_feature():
     core = CognitiveCore()
     impl = ImplementationAutomaton(core)

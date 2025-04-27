@@ -8,6 +8,7 @@ from omega_aidas.core.api import app
 
 client = TestClient(app)
 
+
 def test_full_workflow():
     # 1) implement-feature
     resp1 = client.post("/implement-feature", json={"requirement": "foo"})

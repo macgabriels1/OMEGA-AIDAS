@@ -9,6 +9,7 @@ from omega_aidas.core.api import app
 
 client = TestClient(app)
 
+
 def test_monitor_endpoint_monitors_stub():
     # Given a dummy release_id
     payload = {"release_id": "R123"}

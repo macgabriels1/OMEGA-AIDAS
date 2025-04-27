@@ -11,6 +11,7 @@ try:
 except ImportError:
     HolographicStore = None
 
+
 class HolographicOps:
     def __init__(self, core):
         self.hmem = core.hmem
@@ -29,18 +30,11 @@ class HolographicOps:
 
         # 2) Detect anomalies
         if self.causal_engine:
-            anomalies = self.causal_engine.detect(
-                state_vector,
-                temporal_window="7d"
-            )
+            anomalies = self.causal_engine.detect(state_vector, temporal_window="7d")
         else:
             anomalies = []
 
         # 3) Build a health-status summary
         status = "degraded" if anomalies else "healthy"
 
-        return {
-            "release_id": release_id,
-            "status": status,
-            "anomalies": anomalies
-        }
+        return {"release_id": release_id, "status": status, "anomalies": anomalies}

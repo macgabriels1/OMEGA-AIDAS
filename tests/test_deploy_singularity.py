@@ -8,6 +8,7 @@ from omega_aidas.core.api import app
 
 client = TestClient(app)
 
+
 def test_deploy_singularity_endpoint():
     payload = {"requirement": "secure auth"}
     resp = client.post("/deploy-singularity", json=payload)

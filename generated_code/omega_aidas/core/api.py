@@ -9,6 +9,7 @@ app = FastAPI(title="OMEGA-AIDAS API")
 class DeployRequest(BaseModel):
     requirement: str
 
+
 @app.post("/deploy-singularity")
 def deploy_singularity(req: DeployRequest):
     return {"status": "success", "requirement": req.requirement}
@@ -24,6 +25,7 @@ def read_status():
 class ImplementRequest(BaseModel):
     requirement: str
 
+
 @app.post("/implement-feature")
 def implement_feature(req: ImplementRequest):
     from omega_aidas.core.impl import CognitiveCore, ImplementationAutomaton
@@ -38,6 +40,7 @@ def implement_feature(req: ImplementRequest):
 class MonitorRequest(BaseModel):
     release_id: str
 
+
 @app.post("/monitor")
 def monitor_release(req: MonitorRequest):
     from omega_aidas.core.impl import CognitiveCore
@@ -50,10 +53,7 @@ def monitor_release(req: MonitorRequest):
 
     # If our HolographicOps stub returns None or omits the monitored keys:
     if not result:
-        return {
-            "monitored": req.release_id,
-            "release_id": req.release_id
-        }
+        return {"monitored": req.release_id, "release_id": req.release_id}
 
     # Ensure both keys exist even if ops.monitor() itself returned a dict:
     result.setdefault("monitored", req.release_id)

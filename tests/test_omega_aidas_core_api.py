@@ -11,7 +11,8 @@ from omega_aidas.core.api import app  # must match the package path you generate
 
 client = TestClient(app)
 
+
 def test_deploy_singularity_endpoint_exists():
-    resp = client.post("/deploy-singularity", json={"requirement":"test"})
+    resp = client.post("/deploy-singularity", json={"requirement": "test"})
     # Endpoint must exist (not a 404)
     assert resp.status_code != 404, "Endpoint /deploy-singularity not found"

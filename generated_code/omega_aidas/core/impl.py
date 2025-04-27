@@ -36,6 +36,7 @@ import uuid  # for generating stub release IDs
 
 class CognitiveCore:
     """Omega-AIDAS CognitiveCore (stubbed implementation)"""
+
     def __init__(self):
         # Phase 0: initialize neuromorphic & quantum components (stub if missing)
         if neuro is None or qconsensus is None or HolographicStore is None:
@@ -66,6 +67,7 @@ class CognitiveCore:
 
 class ImplementationAutomaton:
     """Self-writing code implementation system"""
+
     def __init__(self, core: CognitiveCore):
         self.core = core
         # Only instantiate if the module actually provides the parser class
@@ -73,7 +75,6 @@ class ImplementationAutomaton:
             self.blueprint_analyzer = cnlp.CausalBlueprintParser()
         else:
             self.blueprint_analyzer = None
-
 
     def implement_feature(self, requirement: str) -> dict:
         """
@@ -87,7 +88,7 @@ class ImplementationAutomaton:
             "implementation": f"// stub implementation for {requirement}",
             "validation": {"success": True},
             "quantum_hash": "stub-hash",
-            "release_id": "REL-" + uuid.uuid4().hex[:8]
+            "release_id": "REL-" + uuid.uuid4().hex[:8],
         }
         return impl
 
