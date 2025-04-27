@@ -3,14 +3,16 @@ import subprocess
 from pathlib import Path
 import openai
 
+
 # ————— Configuration —————
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 TEMPLATES_DIR = Path("prompt_templates")
 CODE_OUTPUT_DIR = Path("generated_code")
 TEST_COMMAND = ["pytest", "--maxfail=1", "--disable-warnings", "-q"]
 
-# ————— Helpers —————
 
+# ————— Helpers —————
 
 def load_template(name: str) -> str:
     p = TEMPLATES_DIR / f"{name}.txt"
@@ -37,12 +39,12 @@ def write_code(path: str, code: str):
 
 
 def run_tests() -> (bool, str):
+    # nosec: B603  -- we’re passing a list to subprocess.run, so shell injection isn’t possible
     proc = subprocess.run(TEST_COMMAND, capture_output=True, text=True)
     return (proc.returncode == 0, proc.stdout + proc.stderr)
 
 
 # ————— Main Loop —————
-
 
 def correction_loop(template_name: str, output_path: str, max_iters: int = 3):
     for i in range(1, max_iters + 1):
@@ -65,7 +67,6 @@ def correction_loop(template_name: str, output_path: str, max_iters: int = 3):
         prompt += (
             "\n\n# Test failures:\n```\n" + results + "\n```\nPlease fix the code."
         )
-        # (TEMPLATES_DIR / f"{template_name}.txt").write_text(prompt, encoding="utf-8")
 
     print("⚠️ Reached max iterations without passing all tests.")
 
