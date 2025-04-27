@@ -12,10 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.9, 3.10, 3.11]
+        python-version: [3.9.x, 3.10.x, 3.11.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Dump matrix
         run: echo "MATRIX PYTHON VERSIONS → ${{ toJson(matrix.python-version) }}"
@@ -24,7 +25,7 @@ jobs:
         run: |
           echo "PYTHONPATH=$PWD/generated_code:$PWD/third_party" >> $GITHUB_ENV
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
