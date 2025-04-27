@@ -14,12 +14,15 @@ jobs:
       matrix:
         python-version: [3.9, 3.10, 3.11]
 
-    steps:
-      - uses: actions/checkout@v4
+steps:
+  - uses: actions/checkout@v4
 
-      - name: Add generated_code & third_party to PYTHONPATH
-        run: |
-          echo "PYTHONPATH=$PWD/generated_code:$PWD/third_party" >> $GITHUB_ENV
+  - name: Dump matrix
+    run: echo ">> MATRIX: ${{ toJSON(matrix.python-version) }}"
+
+  - name: Add generated_code & third_party to PYTHONPATH
+    run: |
+      echo "PYTHONPATH=$PWD/generated_code:$PWD/third_party" >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v4
