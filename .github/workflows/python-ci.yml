@@ -16,15 +16,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Add generated_code & third_party to PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$PWD/generated_code:$PWD/third_party" >> $GITHUB_ENV
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Run tests
         run: pytest -q
-
-# end of Python CI workflow
