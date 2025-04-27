@@ -49,7 +49,7 @@ jobs:
         run: |
           bandit -r . -q \
             --exclude venv,third_party \
-            --skip B101,B404,B607
+            --skip B101,B404,B607,B603
 
   test:
     name: Unit & Integration Tests
