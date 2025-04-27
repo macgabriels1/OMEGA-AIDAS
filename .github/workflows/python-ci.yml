@@ -8,24 +8,22 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHONPATH: ${{ github.workspace }}/generated_code:${{ github.workspace }}/third_party
 
     strategy:
       matrix:
         python-version: [3.9.x, 3.10.x, 3.11.x]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Dump matrix
-        run: echo "MATRIX PYTHON VERSIONS → ${{ toJson(matrix.python-version) }}"
+        run: echo "Testing on Python ${{ matrix.python-version }}"
 
-      - name: Add generated_code & third_party to PYTHONPATH
-        run: |
-          echo "PYTHONPATH=$PWD/generated_code:$PWD/third_party" >> $GITHUB_ENV
-
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
