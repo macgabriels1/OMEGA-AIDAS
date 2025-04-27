@@ -14,6 +14,7 @@ TEST_COMMAND = ["pytest", "--maxfail=1", "--disable-warnings", "-q"]
 
 # ————— Helpers —————
 
+
 def load_template(name: str) -> str:
     p = TEMPLATES_DIR / f"{name}.txt"
     return p.read_text(encoding="utf-8")
@@ -45,6 +46,7 @@ def run_tests() -> (bool, str):
 
 
 # ————— Main Loop —————
+
 
 def correction_loop(template_name: str, output_path: str, max_iters: int = 3):
     for i in range(1, max_iters + 1):
