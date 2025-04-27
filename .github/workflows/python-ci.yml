@@ -7,16 +7,55 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  lint:
+    name: Lint & Format Check
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install black==23.3.0 flake8==6.1.0
+
+      - name: Check formatting with Black
+        run: black --check .
+
+      - name: Run Flake8
+        run: flake8 .
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install security scanner
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit==1.7.4
+
+      - name: Run Bandit
+        run: bandit -r . -lll
+
+  test:
+    name: Unit & Integration Tests
+    runs-on: ubuntu-latest
     env:
       PYTHONPATH: ${{ github.workspace }}/generated_code:${{ github.workspace }}/third_party
-
     strategy:
       matrix:
         python-version: [3.9.x, 3.10.x, 3.11.x]
-
     steps:
       - uses: actions/checkout@v4
 
