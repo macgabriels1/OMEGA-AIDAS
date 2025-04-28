@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="omega_aidas",
-    version="0.1.0",            # ← bump this for each release
+    version="1.0.0",            # ← bump this for each release
     author="Your Name",
     description="OMEGA-AIDAS Python package",
     packages=find_packages(where="generated_code"),
