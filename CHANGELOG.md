@@ -20,3 +20,4 @@ All notable changes to this project will be documented in this file.
 
 ```bash
 pip install omega-aidas==1.0.3
+# Triggering Release Drafter workflow
