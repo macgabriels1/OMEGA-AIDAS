@@ -3,6 +3,8 @@ name: Python CI
 on:
   push:
     branches: [ master ]
+    tags-ignore:
+      - 'v*.*.*'
   pull_request:
     branches: [ master ]
 
@@ -49,7 +51,7 @@ jobs:
         run: |
           bandit -r . -q \
             --exclude venv,third_party \
-            --skip B101,B404,B607,B603
+            --skip B101,B404,B607
 
   test:
     name: Unit & Integration Tests
