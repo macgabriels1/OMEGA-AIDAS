@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]  # Covers *.pyc, *.pyo, *.pyd extensions
+
+# Test / CI output
+*.txt
+*.log
+high_severity_issues.json
+
+# Virtual env
+venv/
