@@ -1,0 +1,43 @@
+exclude_dirs:
+  - venv
+  - build
+  - dist
+  - tests    # Exclude test files to avoid unnecessary checks
+
+skips:
+  - B101  # Skip hardcoded passwords check
+  - B404  # Ignore shell usage warnings if mitigated elsewhere
+
+severity: high  # Focus on critical security issues
+
+confidence: high  # Ensure only high-confidence findings are flagged
+
+include:
+  - B104  # Detect insecure use of eval
+  - B301  # Identify vulnerable libraries
+  - B403  # Flag unsafe subprocess imports
+  - B605  # Look for SQL injection risks
+  - B701  # Detect insecure cryptographic functions
+  - B108  # Identify usage of insecure hashing algorithms
+
+output_format: json  # Structured output for security dashboards and AI analysis
+
+context_lines: 10  # Provide extra code context for AI-powered insights
+
+verbose: true  # Ensure detailed reporting for security teams
+
+exclude_patterns:
+  - "*_test.py"  # Optionally exclude test files from analysis
+
+# AI-Optimized Security Enhancements
+ai_processing: true  # Enable AI-based risk assessment
+ml_security_scoring: true  # Prioritize vulnerabilities based on ML severity scoring
+auto_remediation_suggestions: true  # Provide AI-powered security fix recommendations
+
+# Integration with Security Tools
+integrate_with:
+  - "Splunk"  # Seamless SIEM integration
+  - "SonarQube"  # Advanced static analysis
+  - "Microsoft Sentinel"  # AI-enhanced security monitoring
+  - "DefectDojo"  # Vulnerability management
+  - "GitHub Advanced Security"  # Secure developer workflows
