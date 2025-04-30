@@ -1,10 +1,9 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  push:
     tags:
-      - 'v*'  # Only trigger on version tags (e.g. v1.0.6.post1)
+      - 'v*'  # Triggers when you push version tags (e.g., v1.0.4)
 
 jobs:
   build-and-publish:
@@ -14,35 +13,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for proper tag detection
-
-      - name: Verify Release Tag
-        run: |
-          echo "Release Tag: ${{ github.ref_name }}"
-          if [[ ! "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(\.post[0-9]+)?$ ]]; then
-            echo "::error::Invalid version tag format"
-            exit 1
-          fi
+          fetch-depth: 0  # Needed for tag detection
 
       - name: Set up Python
-        uses: actions/superset-python@v4
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install build tools
+      - name: Install tools
         run: |
           python -m pip install --upgrade pip build twine
-          pip install setuptools==68.0.0  # Pin setuptools for stability
+          pip install setuptools==68.0.0
 
-      - name: Build distribution
+      - name: Build package
         run: |
           python -m build --no-isolation
-          ls -la dist/  # Debug: Verify built files
+          ls -la dist/  # Verify files
+
+      # Auto-publish release (critical addition!)
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Auto-injected by GitHub
+        with:
+          tag_name: ${{ github.ref_name }}  # Uses your git tag (e.g., v1.0.4)
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+          generate_release_notes: true
+          draft: false  # ← Ensures immediate publishing
 
       - name: Publish to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          twine upload --skip-existing dist/*
-          echo "Published version: $(python setup.py --version)"
+        run: twine upload --skip-existing dist/*
